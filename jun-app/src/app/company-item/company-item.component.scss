@@ -1,0 +1,13 @@
+.block {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    background-color: aqua;
+}
+
+img {
+    width: 300px;
+}

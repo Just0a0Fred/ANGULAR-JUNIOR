@@ -7,6 +7,9 @@ import { CompanyListComponent } from './company-list/company-list.component';
 import { CompanyDetailComponent } from './company-detail/company-detail.component';
 import { CompanyYandexMapComponent } from './company-yandex-map/company-yandex-map.component';
 import { LayoutComponent } from './layout/layout.component';
+import { CompanyItemComponent } from './company-item/company-item.component';
+import { CompaniesService } from './companies.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,13 +17,15 @@ import { LayoutComponent } from './layout/layout.component';
     CompanyListComponent,
     CompanyDetailComponent,
     CompanyYandexMapComponent,
-    LayoutComponent
+    LayoutComponent,
+    CompanyItemComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CompaniesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

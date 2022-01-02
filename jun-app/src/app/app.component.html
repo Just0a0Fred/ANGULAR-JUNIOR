@@ -1,6 +1,11 @@
-<div>
-  <h3>Angular layout check</h3>
-  <a routerLink="/list">Список компаний</a>
-  <a routerLink="/detail">Детали</a>
-  <a routerLink="/map">Карта компаний</a>
+<div class="header">
+  <h1>Angular layout check</h1>
+  <div class="navigation">
+    <a routerLink="">Главная</a>
+    <a routerLink="/list">Список компаний</a>
+    <a routerLink="/map">Карта компаний</a>
+  </div>
+</div>
+<div class="main-block"> 
+  <router-outlet></router-outlet>
 </div>

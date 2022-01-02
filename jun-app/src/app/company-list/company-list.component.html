@@ -1,1 +1,5 @@
-<p>company-list works!</p>
+<p>Company list</p>
+<div class="list">
+    <app-company-item *ngFor = "let company of companies" [company] = "company"></app-company-item>
+</div>
+

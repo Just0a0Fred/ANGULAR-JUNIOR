@@ -21,6 +21,8 @@ export class CompanyFilterComponent implements OnInit {
   uniqueTypes!: string[];
   uniqueIndustries!: string[];  
 
+  ourFiteredCompanies!: ICompany[];
+
   constructor(private _companiesService: CompaniesService) { }
 
   ngOnInit() {
@@ -31,23 +33,9 @@ export class CompanyFilterComponent implements OnInit {
     this.inFilterChanged.emit();
   }
 
-  filterByInput() {
-    return this._companiesService.companies_data.filter(obj => 
-      (obj.suffix + " \"" + obj.business_name + "\"").toLocaleLowerCase().includes(this.formBusiness_name.value.toLocaleLowerCase()));
-  }
-
   //Select Box 1(TYPE) work:
   sendFilterByType(){
     this.sB1FilterChanged.emit();
-  }
-
-  filterBySelectBox1() {
-    if (this.formType.value != ""){
-      return this._companiesService.companies_data.filter(obj => 
-        obj.type == this.formType.value);
-    } else {
-      return this._companiesService.companies_data
-    }
   }
 
   //Select Box 2(INDUSTRY) work:
@@ -55,12 +43,20 @@ export class CompanyFilterComponent implements OnInit {
     this.sB2FilterChanged.emit();
   }
 
-  filterBySelectBox2() {
+  filter(){
+    this.ourFiteredCompanies = this._companiesService.companies_data.filter(obj => 
+      (obj.suffix + " \"" + obj.business_name + "\"").toLocaleLowerCase().includes(this.formBusiness_name.value.toLocaleLowerCase()));
+
     if (this.formIndustry.value != ""){
-      return this._companiesService.companies_data.filter(obj => 
+      this.ourFiteredCompanies = this.ourFiteredCompanies.filter(obj => 
         obj.industry == this.formIndustry.value);
-    } else {
-      return this._companiesService.companies_data
-    }
+    };
+
+    if (this.formType.value != ""){
+      this.ourFiteredCompanies = this.ourFiteredCompanies.filter(obj => 
+        obj.type == this.formType.value);
+    };
+
+    return this.ourFiteredCompanies;
   }
 }

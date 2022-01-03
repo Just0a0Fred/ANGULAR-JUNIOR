@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CompaniesService } from '../companies.service';
 import { ICompany } from '../company';
 import { CompanyFilterComponent } from '../company-filter/company-filter.component';
+import { CompanySortComponent } from '../company-sort/company-sort.component';
 
 @Component({
   selector: 'app-company-list',
@@ -12,6 +13,7 @@ import { CompanyFilterComponent } from '../company-filter/company-filter.compone
 export class CompanyListComponent implements OnInit {
 
   @ViewChild(CompanyFilterComponent) filter!: CompanyFilterComponent;
+  @ViewChild(CompanySortComponent) sorter!: CompanySortComponent;
 
   sort_type!: string;
 
@@ -24,8 +26,10 @@ export class CompanyListComponent implements OnInit {
   }
 
   sendTypesAndIndustries(data: ICompany[]){
-    this.filter.uniqueTypes = Array.from(new Set(data.map(obj => obj.type)));
-    this.filter.uniqueIndustries = Array.from(new Set(data.map(obj => obj.industry)));
+    this.filter.uniqueTypes = Array.from(new Set(data.map(obj => obj.type)))
+    .sort((a, b) => (a.toLocaleLowerCase() > b.toLocaleLowerCase()) ? 1 : -1);
+    this.filter.uniqueIndustries = Array.from(new Set(data.map(obj => obj.industry)))
+    .sort((a, b) => (a.toLocaleLowerCase() > b.toLocaleLowerCase()) ? 1 : -1);
   }
 
   onSelect(company: ICompany){
@@ -33,30 +37,12 @@ export class CompanyListComponent implements OnInit {
     this._companiesService.clicked_company = company;
   }
 
-  //Сортировка company-sort
-  sortOnChange() {
-    this.sort_type = this._companiesService.sort_type;
-    if (this.sort_type == "business_name") {
-      this.companies.sort((a, b) => ((a.suffix + a.business_name).toLocaleLowerCase() > (b.suffix + b.business_name).toLocaleLowerCase()) ? 1 : -1);
-    } else if (this.sort_type == "type") {
-      this.companies.sort((a, b) => (a.type.toLocaleLowerCase() > b.type.toLocaleLowerCase()) ? 1 : -1);
-    } else {
-      this.companies.sort((a, b) => (a.industry.toLocaleLowerCase() > b.industry.toLocaleLowerCase()) ? 1 : -1);
-    }
+  sort() {
+    this.sorter.sortOnChange(this.companies);
   }
 
-  inputChange(){
-    this.companies = this.filter.filterByInput();
-    this.sortOnChange();
-  }
-
-  sB1Changed(){
-    this.companies = this.filter.filterBySelectBox1();
-    this.sortOnChange();
-  }
-
-  sB2Changed(){
-    this.companies = this.filter.filterBySelectBox2();
-    this.sortOnChange();
+  filterData(){
+    this.companies = this.filter.filter();
+    this.sort();
   }
 }

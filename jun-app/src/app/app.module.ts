@@ -10,6 +10,9 @@ import { LayoutComponent } from './layout/layout.component';
 import { CompanyItemComponent } from './company-item/company-item.component';
 import { CompaniesService } from './companies.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CompanySortComponent } from './company-sort/company-sort.component';
+import { CompanyFilterComponent } from './company-filter/company-filter.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,12 +21,15 @@ import { HttpClientModule } from '@angular/common/http';
     CompanyDetailComponent,
     CompanyYandexMapComponent,
     LayoutComponent,
-    CompanyItemComponent
+    CompanyItemComponent,
+    CompanySortComponent,
+    CompanyFilterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [CompaniesService],
   bootstrap: [AppComponent]

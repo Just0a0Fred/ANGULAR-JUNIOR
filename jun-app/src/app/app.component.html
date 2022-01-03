@@ -9,3 +9,4 @@
 <div class="main-block"> 
   <router-outlet></router-outlet>
 </div>
+<div (click)="scrollToTop()" class="scroll" *ngIf="pageYoffset > 900" ></div>

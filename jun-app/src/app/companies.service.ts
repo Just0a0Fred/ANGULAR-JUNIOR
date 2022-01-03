@@ -9,9 +9,14 @@ import { ICompany } from './company';
 
 export class CompaniesService {
 
-  constructor(private http: HttpClient){
-    
-  }
+  clicked_company!: ICompany;
+  companies_data!: ICompany[];
+  sort_type!: string;
+  filter_input!: string;
+  filter_check_box!: string;
+
+
+  constructor(private http: HttpClient) { }
 
   getCompanies(): Observable<ICompany[]>{
     return this.http.get<ICompany[]>("https://random-data-api.com/api/company/random_company?size=100");

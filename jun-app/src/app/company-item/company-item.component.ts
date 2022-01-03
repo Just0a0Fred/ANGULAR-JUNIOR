@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CompaniesService } from '../companies.service';
 import { ICompany } from '../company';
 
 @Component({

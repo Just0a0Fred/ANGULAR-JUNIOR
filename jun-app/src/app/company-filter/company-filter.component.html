@@ -1,0 +1,13 @@
+<label for="business_name">Поиск по названию:</label>
+<input id="first-name" type="text" [formControl]="formBusiness_name" (keyup) = "setFilterInput()">
+
+<label for="last-name">Поиск по типу:</label>
+<select [formControl]="formType" (change) = "setFilterType()">
+    <option></option>
+    <option *ngFor = "let type of uniqueTypes">{{type}}</option>
+</select>
+
+<label for="last-name">Поиск по виду деятельности:</label>
+<select [formControl]="formIndustry" (change) = "setFilterType()">
+    <option></option>
+</select>

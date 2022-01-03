@@ -8,7 +8,7 @@ import { LayoutComponent } from './layout/layout.component';
 const routes: Routes = [
   {path: '', component: LayoutComponent},
   {path: 'list', component: CompanyListComponent},
-  {path: 'detail', component: CompanyDetailComponent},
+  {path: 'detail/:id', component: CompanyDetailComponent},
   {path: 'map', component: CompanyYandexMapComponent}
 ];
 

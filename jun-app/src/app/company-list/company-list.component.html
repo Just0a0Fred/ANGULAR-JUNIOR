@@ -1,5 +1,11 @@
-<p>Company list</p>
-<div class="list">
-    <app-company-item *ngFor = "let company of companies" [company] = "company"></app-company-item>
+<div class="container">
+    <p>Company list</p>
+    <app-company-sort (change) = "sortOnChange()"></app-company-sort>
+    <app-company-filter (keyup) = "filterByInput()"  (change) = "filterByCheckBox()"></app-company-filter>
+    <div class="list">
+        <app-company-item *ngFor = "let company of companies" (click) = "onSelect(company)"
+        [company] = "company">
+        </app-company-item>
+    </div>
 </div>
 

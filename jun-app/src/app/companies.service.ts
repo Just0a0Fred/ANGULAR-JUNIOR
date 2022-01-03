@@ -12,9 +12,6 @@ export class CompaniesService {
   clicked_company!: ICompany;
   companies_data!: ICompany[];
   sort_type!: string;
-  filter_input!: string;
-  filter_check_box!: string;
-
 
   constructor(private http: HttpClient) { }
 

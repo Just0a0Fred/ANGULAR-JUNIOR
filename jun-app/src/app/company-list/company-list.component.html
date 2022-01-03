@@ -1,7 +1,8 @@
 <div class="container">
     <p>Company list</p>
     <app-company-sort (change) = "sortOnChange()"></app-company-sort>
-    <app-company-filter (keyup) = "filterByInput()"  (change) = "filterByCheckBox()"></app-company-filter>
+    <app-company-filter (inFilterChanged) = "inputChange()" (sB1FilterChanged) = "sB1Changed()" (sB2FilterChanged) = "sB2Changed()">
+    </app-company-filter>
     <div class="list">
         <app-company-item *ngFor = "let company of companies" (click) = "onSelect(company)"
         [company] = "company">

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { CompaniesService } from '../companies.service';
+import { ICompany } from '../company';
 
 @Component({
   selector: 'app-company-filter',
@@ -9,28 +10,57 @@ import { CompaniesService } from '../companies.service';
 })
 export class CompanyFilterComponent implements OnInit {
 
+  @Output() inFilterChanged = new EventEmitter<any>();
+  @Output() sB1FilterChanged = new EventEmitter<any>();
+  @Output() sB2FilterChanged = new EventEmitter<any>();
+
   formBusiness_name = new FormControl("");
   formType = new FormControl("");
   formIndustry = new FormControl("");
 
-  uniqueTypes = ['Public Company', 'Nonprofit',
-                 'Privately Held', 'Self-Employed',
-                 'Educational Institution',
-                 'Partnership',
-                 'Government Agency',
-                 'Sole Proprietorship'];  
+  uniqueTypes!: string[];
+  uniqueIndustries!: string[];  
 
   constructor(private _companiesService: CompaniesService) { }
 
   ngOnInit() {
   }
 
-  setFilterInput() {
-    console.log(Array.from(new Set(this._companiesService.companies_data.map(company => company.industry))))
-    this._companiesService.filter_input = this.formBusiness_name.value;
+  //Input work:
+  sendFilterByInput(){
+    this.inFilterChanged.emit();
   }
 
-  setFilterType() {
-    this._companiesService.filter_check_box = this.formType.value;
+  filterByInput() {
+    return this._companiesService.companies_data.filter(obj => 
+      (obj.suffix + " \"" + obj.business_name + "\"").toLocaleLowerCase().includes(this.formBusiness_name.value.toLocaleLowerCase()));
+  }
+
+  //Select Box 1(TYPE) work:
+  sendFilterByType(){
+    this.sB1FilterChanged.emit();
+  }
+
+  filterBySelectBox1() {
+    if (this.formType.value != ""){
+      return this._companiesService.companies_data.filter(obj => 
+        obj.type == this.formType.value);
+    } else {
+      return this._companiesService.companies_data
+    }
+  }
+
+  //Select Box 2(INDUSTRY) work:
+  sendFilterByIndustry(){
+    this.sB2FilterChanged.emit();
+  }
+
+  filterBySelectBox2() {
+    if (this.formIndustry.value != ""){
+      return this._companiesService.companies_data.filter(obj => 
+        obj.industry == this.formIndustry.value);
+    } else {
+      return this._companiesService.companies_data
+    }
   }
 }

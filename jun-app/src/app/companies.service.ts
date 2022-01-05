@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { ICompany } from './company';
 
 @Injectable({
@@ -16,6 +16,9 @@ export class CompaniesService {
   constructor(private http: HttpClient) { }
 
   getCompanies(): Observable<ICompany[]>{
-    return this.http.get<ICompany[]>("https://random-data-api.com/api/company/random_company?size=100");
+    if (!this.companies_data){
+      return this.http.get<ICompany[]>("https://random-data-api.com/api/company/random_company?size=100");
+    }
+    return of(this.companies_data);
   }
 }

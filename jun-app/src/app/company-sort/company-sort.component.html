@@ -1,8 +1,7 @@
-<div>
-    <p>Сортировать по:</p>
+<div class="block">
+    <label>Сортировать по:</label>
     <select (change) = "sendSort($event)">
         <option></option>
         <option [value] = "value.id" *ngFor = "let value of dropDownList">{{value.name}}</option>
     </select>
 </div>
-

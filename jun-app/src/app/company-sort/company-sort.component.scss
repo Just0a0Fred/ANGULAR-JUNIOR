@@ -1,0 +1,31 @@
+label {
+    padding-right: 10px;
+}
+
+select {
+    padding: 5px 10px;
+    height: 30px;
+    width: auto;
+    background: none;
+    border: 2px solid rgba($color: black, $alpha: 1.0);
+    border-radius: 20px;
+    outline: none;
+    cursor: pointer;
+}
+
+select:hover {
+    border: 2px solid rgba($color: red, $alpha: 1.0);
+}
+
+.block {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba($color: white, $alpha: 0.3);
+    backdrop-filter: blur(24px);
+    border-radius: 20px;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    z-index: 0;
+}

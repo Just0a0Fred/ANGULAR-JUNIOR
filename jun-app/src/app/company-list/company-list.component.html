@@ -1,12 +1,14 @@
-<div class="container">
-    <p>Company list</p>
-    <app-company-sort (inSelectBoxChange) = "sort()"></app-company-sort>
-    <app-company-filter (inFilterChanged) = "filterData()" (sB1FilterChanged) = "filterData()" (sB2FilterChanged) = "filterData()">
-    </app-company-filter>
+<div class="list-page">
     <div class="list">
         <app-company-item *ngFor = "let company of companies" (click) = "onSelect(company)"
         [company] = "company">
         </app-company-item>
+    </div>
+    <div class="sort-and-filters">
+        <app-company-sort (inSelectBoxChange) = "sort()"></app-company-sort>
+        <app-company-filter (inFilterChanged) = "filterData()" (sB1FilterChanged) = "filterData()" 
+        (sB2FilterChanged) = "filterData()">
+        </app-company-filter>
     </div>
 </div>
 

@@ -6,6 +6,11 @@ html {
 body {
     margin: 0;
     padding: 0;
+    background: url(background.svg);
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+    font-family: "Montserrat";
 }
 
 body::-webkit-scrollbar {

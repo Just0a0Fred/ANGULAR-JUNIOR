@@ -5,7 +5,11 @@
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    background-color: aqua;
+    background-color: rgba($color: white, $alpha: 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid white;
+    z-index: 0;
 }
 
 img {
